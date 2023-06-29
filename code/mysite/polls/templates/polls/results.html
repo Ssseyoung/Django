@@ -1,0 +1,24 @@
+
+<h1>결과 화면</h1>
+
+<h2>{{ question.question_text }}</h2>
+
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} 개</li>    
+{% endfor %}
+</ul>
+
+<a href="{% url 'polls:detail' question.id %}">다시 투표하기</a>
+
+{% comment %}
+<!-- 
+    {% url 'polls:detail' question.id %}
+    {% url '앱이름:경로이름' question.id %}
+    - 앱이름    : url.py 에서 설정한 app_name="polls"
+    - 경로이름  : path( name="detail" )
+
+    * url 은 urls.py 에 설정된 앱이름:경로이름을 지정하는 키워드
+
+ -->
+ {% endcomment %}

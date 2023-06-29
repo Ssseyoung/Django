@@ -1,0 +1,13 @@
+
+{% if question_list %}
+    <ul>
+        {% for question in question_list %}
+            <li>
+                <a href="/polls/{{ question.id }}">{{ question.question_text }}</a>
+                <span>투표 수 : {{ question.sum }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>조회된 데이터가 없습니다.</p>
+{% endif %}
