@@ -23,6 +23,15 @@ class QuestionAdmin(admin.ModelAdmin):
     # Choice 테이블 포함하기
     inlines = [ChoiceInline]        # 종속된 Choice 테이블 같이 보기
 
+    # 리스트 출력 항목 지정
+    list_display = ('question_text', 'pub_date')
+    
+    # 리스트 필터 추가 (날짜 순)
+    list_filter = ['pub_date']
+    
+    # 검색창 추가
+    search_fields = ['question_text']
+
 
 # 관리자 페이지에서 polls 애플리케이션을 관리하도록 등록
 admin.site.register(Question, QuestionAdmin)
