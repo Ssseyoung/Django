@@ -1,0 +1,22 @@
+<h1>form 양식 만들기</h1>
+
+{% comment %}
+    RuntimeError
+    - URL doesn't end in a slash ...
+    * 요청경로가 / 끝나지 않아서 발생하는 에러
+    * /myapp/ 이와같이 / 로 끝나는 url 로 작성해주어야한다
+{% endcomment %}
+
+<form action="/myapp/" method="post">
+    {% csrf_token %}
+
+    {% comment %}
+        {{ form }}
+        {{ form.as_p }}      : <p> 태그로 감싸서 렌더링
+        {{ form.as_ul }}     : <ul>, <li> 태그로 감싸서 렌더링
+        {{ form.as_table }}  : <table> 태그로 감싸서 렌더링
+    {% endcomment %}
+
+    {{ form.as_p }}
+    <input type="submit" value="등록">
+</form>

@@ -2,9 +2,26 @@
 
 <h1>{{ question.question_text }}</h1>
 
-
+<!-- 
+    {% comment %}
+    {% url 'polls:vote' question.id %}
+    {% url '앱이름:경로이름' 요청변수의 값 %}
+    {% url %} 태그는 urls.py 파일을 참조하여, 매핑한 url 경로를 출력해준다.
+    * 앱이름을 사용하려면, urls.py 파일에서 app_name 변수를 설정해야한다.
+    앱이름:경로이름 -> /polls/10/vote
+    {% endcomment %}
+ -->
 <form action="{% url 'polls:vote' question.id %}" method="post">
 {% csrf_token %}
+<!-- 
+    {% comment %}
+    Cross Site Request Forgeries
+    : 사이트간 요청 변조하는 공격
+    {% csrf_token %} : CRSF 공격을 방지하기 위한 보안 코드
+    사이트에 접속했을 때, 서버로부터 토큰을 발급받아서
+    해당 사이트에 접속한 인증된 사용자만이 요청을 할 수 있도록 함
+    {% endcomment %}
+ -->
 <!-- 설문 - 답변항목 -->
 {% for choice in question.choice_set.all %}
     <input type="radio" name="choice" id="choice{{ forloop.counter }}"
@@ -13,7 +30,7 @@
 {% endfor %}
 
 {% if error_message %}
-    <p>{{ error_message }}</p>
+    <p style="color: red;">{{ error_message }}</p>
 {% endif %}
 
 <input type="submit" value="투표하기">

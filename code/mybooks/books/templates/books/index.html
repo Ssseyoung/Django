@@ -1,0 +1,14 @@
+
+<h2>도서 관리 시스템</h2>
+<ul>
+    {% for modelname in model_list %}
+        {% comment %}
+        lower 필터  : 소문자로 변환
+        add 필터    : 문자열을 연결하는 필터 
+        {% endcomment %}
+
+        {% with "books:"|add:modelname|lower|add:"_list" as urlvar %}
+            <li><a href="{% url urlvar %}">{{ modelname }}</a></li>
+        {% endwith %}
+    {% endfor %}
+</ul>

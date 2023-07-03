@@ -1,0 +1,15 @@
+
+<h1>{{ object.title }}</h1>
+
+<ul>
+    <li>저자 :
+        {% for author in object.authors.all %}
+            {{ author }}
+            {% if not forloop.last %} ,
+            {% else %}
+            {% endif %}
+        {% endfor %}
+    </li>
+    <li>출판사 : {{ object.publisher }}</li>
+    <li>출판일자 : {{ object.publication_date }}</li>
+</ul>

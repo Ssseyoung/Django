@@ -38,6 +38,10 @@ def detail(request, question_id):
     # HttpResponse 객체를 반환
     #   - 클라이언트에게 응답할 내용
     #   - 화면을 렌더링한 결과 포함
+    # get_object_or_404()
+    #   - get_object_or_404( 테이블명, pk= ? )
+    #     --> pk 가 ? 인 데이터를 조회
+    #     --> 데이터가 존재하지 않으면, 404 페이지로 이동(HTTP404 예외 발생)
     
     
 # 설문 선택 등록
@@ -48,6 +52,8 @@ def vote(request, question_id):
     try:
         # 선택 항목 조회
         choice_id = request.POST['choice']
+        # request.POST : 요청 정보에 접근할 수 있는 딕셔너리 객체
+        # <input type="text" name="choice"/> --> request.POST['choice']
         # SELECT * FROM choice WHERE choice_id = ?
         selected_choice = question.choice_set.get(pk=choice_id)
         # Choice 테이블에서 데이터를 조회
@@ -66,6 +72,11 @@ def vote(request, question_id):
         return HttpResponseRedirect( reverse('polls:results', args=(question.id,)) ) 
                                    # reverse( '경로 패턴', args=튜플 )
                                    # - args : 경로에 매핑할 변수를 튜플로 지정  
+        # HttpResponseRedirect( '재요청할 url' )
+        #   - HttpResponseRedirect( 'polls/10/results' )
+        # reverse( '경로 패턴', args=튜플 )
+        # reverse( '앱이름:경로이름', args=튜플 )
+        # - args : 경로에 매핑할 변수를 튜플로 지정  
 
 # 설문 결과 뷰
 def results(request, question_id):
