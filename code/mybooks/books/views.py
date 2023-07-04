@@ -22,8 +22,8 @@ class BooksModelView(TemplateView):
     # 컨텍스트 지정
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['model_list'] = ['Book', 'Author', 'Pulisher']
-        context['model_list'] = ['Book']
+        context['model_list'] = ['Book', 'Author', 'Publisher']
+        # context['model_list'] = ['Book']
         return context
     
 # 도서 목록
@@ -35,3 +35,18 @@ class BookList(ListView):
 class BookDetail(DetailView):
     model = Book
     
+# 저자 목록
+class AuthorList(ListView):
+    model = Author
+
+# 저자 상세
+class AuthorDetail(DetailView):
+    model = Author
+
+# 출판사 목록
+class PublisherList(ListView):
+    model = Publisher
+
+# 출판사 상세
+class PublisherDetail(DetailView):
+    model = Publisher

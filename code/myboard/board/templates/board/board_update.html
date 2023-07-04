@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>게시글 수정</h1>
+    <div class="content">
+        <form action="" method="POST" id="form">
+            {% csrf_token %}
+                <input type="hidden" name="board_id" value="{{ board.id }}"
+                        id="board_id">
+
+                <div class="input-box">
+                    <label for="title">제목</label>
+                    <input type="text" name="title" id="title" value="{{ board.title }}">
+                </div>
+                <div class="input-box">
+                    <label for="content">내용</label>
+                    <textarea name="content" id="content" cols="30" rows="10">{{ board.content }}</textarea>
+                </div>
+
+                <button type="submit" class="btn">수정</button>
+                <button type="button" class="btn" id="btn-delete">삭제</button>
+        </form>
+    </div>
+
+    <script>
+        $(function(){
+            $('#btn-delete').on('click', function(){
+                // alert('삭제 요청')
+                let form = $('#form')
+                let board_id = $('#board_id').val()
+                form.attr('action', '/board/delete/' + board_id)
+                form.submit()       // 폼 제출
+            })
+        })
+    </script>
+
+{% endblock %}

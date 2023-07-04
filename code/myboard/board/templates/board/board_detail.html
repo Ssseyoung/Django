@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{{ object.title }}</h2>
+    <p>
+        {{ object.content }}
+    </p>
+
+    <a href="{% url 'board:board_update' object.id %}">수정</a>
+    <!-- 댓글 목록 -->
+{% endblock %}
